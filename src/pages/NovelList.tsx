@@ -1,3 +1,5 @@
+// Jisang
+
 const NovelList = () => {
     return (
         <div>
