@@ -1,9 +1,11 @@
+import LoginBox from '../components/LoginBox';
+
+
 const LogIn = () => {
     return (
-        <div>
-            LogIn
-        </div>
-    );
+        <LoginBox />
+    )
+
 };
 
 export default LogIn;
