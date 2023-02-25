@@ -1,8 +1,11 @@
+import HomeContents from '../components/HomeContents';
+
+
 const Home = () => {
+    
     return (
-        <div>
-            Home
-        </div>
+      <HomeContents />
+    
     )
 }
 

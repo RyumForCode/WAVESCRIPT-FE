@@ -1,9 +1,10 @@
+import RegisterBox from '../components/RegisterBox';
+
 const Register = () => {
     return (
-        <div>
-            Register
-        </div>
+        <RegisterBox />
     );
 };
+
 
 export default Register;
