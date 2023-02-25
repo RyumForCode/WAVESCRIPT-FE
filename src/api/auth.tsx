@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://54.180.96.111:3000';
+const baseURL = '';
 
 
 const register = async ({ id , password }:{ id: string , password:string }) => {
