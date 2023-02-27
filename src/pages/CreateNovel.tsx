@@ -1,26 +1,33 @@
-// Jisang
+import styled from "styled-components";
+import { plusscriptAdd, scriptBrowseAll, scriptDeleteFirst, scriptEditFirst, scriptInspect } from "../api/script";
+import CreateNewScript from "../components/CreateNewScript";
+import Footer from "../components/Footer";
+import HeaderTitle from "../components/HeaderTitle";
+import Wrapper from "../components/Wrapper";
+
+const onClickTestButton = ({id} : {id : number}) => {
+    
+}
 
 const CreateNovel = () => {
     return (
-        <div>
-            <div>
-                <h1>WAVESCRIPT</h1>
-                <button>Log out</button>
-            </div>
-            <div>
-                <label>Contributor Limit </label><input />
-                <br/>
-                <label>Paragraph Limit </label><input />
-                <br/>
-                <input placeholder = 'Insert your novel title'/>
-                <input placeholder = 'Insert the genre'/>
-                <br/>
-                <label>Creator Id</label><textarea />
-                <br/>
-                <button>Publish!</button>
-            </div>
-        </div>
+        <Wrapper>
+            <HeaderTitle />
+            <StCreateContainer>
+                <CreateNewScript />
+            </StCreateContainer>
+            <button onClick = {() => {onClickTestButton({id : 3})}}>test</button>
+            <Footer />
+        </Wrapper>
     );
 };
 
 export default CreateNovel;
+
+const StCreateContainer = styled.div`
+    display : flex;
+    flex-direction : column;
+    justify-content : flex-start;
+    margin : auto;
+    width : 60%;
+`

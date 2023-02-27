@@ -3,12 +3,15 @@ import ScriptHistory from "./ScriptHistory";
 import ScriptPost from "./ScriptPost";
 
 const ScriptList = () => {
+
+    const isUser = true;
+
     return (
         <StScriptList>
-            <ScriptHistory key = '1'/>
-            <ScriptHistory key = '2'/>
-            <ScriptHistory key = '3'/>
-            <ScriptPost />
+            <ScriptHistory key = '1' id = {'something'}/>
+            <ScriptHistory key = '2' id = {'chicken'}/>
+            <ScriptHistory key = '3' id = {'Id5'}/>
+            {isUser ? <ScriptPost /> : null}
         </StScriptList>
     );
 };
@@ -19,7 +22,5 @@ const StScriptList = styled.div`
     display : flex;
     flex-direction : column;
     justify-content : flex-start;
-    gap : 1rem;
     margin : auto;
-    width : 60%;
 `

@@ -4,10 +4,10 @@ const text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at ni
 const author = 'contributorId';
 
 
-const ScriptHistory = () => {
+const ScriptHistory = ({ id } : { id : string }) => {
     return (
         <StHistory>
-            <StHistoryAuthor>{author}</StHistoryAuthor>
+            <StHistoryAuthor>{id}</StHistoryAuthor>
             <StHistoryText>{text}</StHistoryText>
         </StHistory>
     );
@@ -23,13 +23,20 @@ const StHistory = styled.div`
     align-items : flex-start;
     word-break : keep-all;
     gap : 1.5rem;
+    margin-top : 1rem;
+    position : relative;
 `
 
 const StHistoryAuthor = styled.div`
     font-weight : 700;
+    font-family : 'inter';
+    position : absolute;
+    left : -6rem;
+    line-height : 2rem;
 `
 const StHistoryText = styled.div`
+    font-family : 'inter';
     font-size : 1rem;
     font-weight : 400;
-    line-height : 1.5rem;
+    line-height : 2rem;
 `

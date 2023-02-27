@@ -16,7 +16,7 @@ export default HeaderTitle;
 
 const StHeaderDiv = styled.div`
     margin : auto;
-    height : 128px;
+    height : 194px;
     display : flex;
     align-items : center;
 `

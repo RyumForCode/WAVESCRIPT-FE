@@ -6,16 +6,15 @@ const LogInBox = () => {
 
     const [idValue,idValueHandler,idValueRemover] = useInput()
     const [pwValue,pwValueHandler,pwValueRemover] = useInput()
-    const [cookies, setCookie, removeCookie] = useCookies(['Authorization']);
+    const [cookies, setCookie, removeCookie] = useCookies(['authorization']);
     
 
     const onClickLoginButton = () => {
         if(!idValue || !pwValue) return alert('Fill all field')
         login({id:idValue, password:pwValue}).then((res)=>{
-            const authId = "Bearer " + res.data.token;
-            setCookie("Authorization",authId)
+            const authId = res.data.Authorization.split(' ')[1];
+            setCookie("authorization", 'Bearer ' + authId)
         })
-        console.log(cookies);
     }
    
 
