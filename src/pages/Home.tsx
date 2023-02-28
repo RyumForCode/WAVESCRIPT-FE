@@ -1,12 +1,17 @@
+import { WhiteModeProvider } from '../components/context/WhiteModeContext';
+import HeaderTitle from '../components/HeaderTitle';
 import HomeContents from '../components/HomeContents';
 
 
 const Home = () => {
     
     return (
-      <HomeContents />
-    
+      <WhiteModeProvider>
+        <HeaderTitle />
+        <HomeContents />
+      </WhiteModeProvider>
     )
 }
 
 export default Home;
+

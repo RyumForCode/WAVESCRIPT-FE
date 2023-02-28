@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = '';
+const baseURL = process.env.REACT_APP_BE_SERVER;
 
 
 const register = async ({ id , password }:{ id: string , password:string }) => {
@@ -15,5 +15,6 @@ const login = async({ id, password } : { id:string, password:string }) => {
     console.log(response);
     return response;
 }
+
 
 export { register , login };

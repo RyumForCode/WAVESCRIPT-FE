@@ -1,0 +1,22 @@
+:root{
+    --bg-color:
+    background: rgb(41,55,96);
+    --bg-color:linear-gradient(129deg, rgba(41,55,96,1) 0%, rgba(17,17,38,1) 33%, rgba(30,28,66,1) 62%, rgba(50,42,82,1) 75%, rgba(43,34,62,1) 86%);
+    --font-white:white;
+    --box-color:#f3f3f3;
+    --btncolor:black;
+    --sun-color:rgb(223, 90, 46);
+}
+
+html{
+    background: var(--bg-color);
+}
+
+
+html.white {
+    background:#f6f6f6;
+    --font-white:#393f99;
+    --btncolor:white;
+    --box-color:#eaeaea;
+    --sun-color:rgb(233, 172, 41);
+}
