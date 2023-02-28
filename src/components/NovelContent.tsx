@@ -29,24 +29,29 @@ const StNovelContent = styled.div`
 const StNLTitle = styled.div`
     flex-grow : 60;
     text-align: center;
+    flex-shrink : 0;
 `
 
 const StNLGenre = styled.div`
     flex-grow : 10;
     text-align: center;
+    flex-shrink : 0;
 `
 
 const StNLCreator = styled.div`
     flex-grow : 10;
     text-align: center;
+    flex-shrink : 0;
 `
 
 const StNLContributor = styled.div`
     flex-grow : 10;
     text-align: center;
+    flex-shrink : 0;
 `
 
 const StNLStatus = styled.div`
     flex-grow : 10;
     text-align: center;
+    flex-shrink : 0;
 `

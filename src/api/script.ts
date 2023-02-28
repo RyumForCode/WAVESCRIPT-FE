@@ -1,20 +1,19 @@
 import instance from "./instance/instance";
 
 //checked
-const createNovel = async ({ genre, title, content } : { genre : string, title : string, content : string }) => {
-    const response = await instance.post(`/scripts`, { genre, title, content })
-    console.log(response);
-    return response;
-}
-
-//issued
-const scriptBrowseAll = async () => {
-    const response = await instance.get('/scripts/all');
+const createNovel = async ({ title, genre, content, contributors, paragraph } : { title : string, genre : string, content : string, contributors : number, paragraph : number }) => {
+    const response = await instance.post(`/scripts`, { title, genre, content, contributors, paragraph });
     console.log(response);
     return response;
 }
 
 //checked
+const scriptBrowseAll = async () => {
+    const response = await instance.get('/scripts/all');
+    return response;
+}
+
+//issued
 const scriptBrowseRandom = async () => {
     const response = await instance.get('/scripts');
     console.log(response);
@@ -30,21 +29,18 @@ const scriptInspect = async ({id} : {id : number}) => {
 //checked
 const scriptEditFirst = async ({id, title, genre, content} : {id : number, title : string, genre : string, content : string}) => {
     const response = await instance.patch(`/scripts/${id}`, {title, genre, content});
-    console.log(response);
     return response;
 }
 
 //checked
 const scriptDeleteFirst = async ({id} : {id : number}) => {
     const response = await instance.delete(`/scripts/${id}`);
-    console.log(response);
     return response;
 }
 
-//issued
+//checked
 const plusscriptAdd = async ({id, content} : {id : number, content : string}) => {
-    const response = await instance.post(`/plusscript/${id}`, {content});
-    console.log(response);
+    const response = await instance.post(`/scripts/${id}/plusscript`, {content});
     return response;
 }
 

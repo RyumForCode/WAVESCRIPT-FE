@@ -18,7 +18,7 @@ const CreateNewScript = () => {
     }
 
     const onClickPublishButton = () => {
-        createNovel({title, genre, content : inputVal});
+        createNovel({title, genre, content : inputVal, contributors : Number(contributors), paragraph : Number(paragraph)});
     }
 
     return (

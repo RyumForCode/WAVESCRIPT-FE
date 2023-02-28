@@ -21,10 +21,10 @@ const ViewEdit = () => {
             <HeaderTitle />
             <Container>
                 <StScriptPropertyDiv>
-                    <StScriptPropertyTitle>{data?.data.scripts.title}</StScriptPropertyTitle>
-                    <StScriptPropertyGenre>{data?.data.scripts.genre}</StScriptPropertyGenre>
+                    <StScriptPropertyTitle>{data?.data.script.script.title}</StScriptPropertyTitle>
+                    <StScriptPropertyGenre>{data?.data.script.script.genre}</StScriptPropertyGenre>
                 </StScriptPropertyDiv>
-                <ScriptList scriptData = {data?.data.scripts} />
+                <ScriptList scriptData = {data?.data.script} />
             </Container>
             <Footer />
         </Wrapper>

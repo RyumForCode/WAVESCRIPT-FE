@@ -15,10 +15,10 @@ const HeaderTitle = () => {
 export default HeaderTitle;
 
 const StHeaderDiv = styled.div`
-    margin : auto;
     height : 194px;
     display : flex;
     align-items : center;
+    flex-shrink : 0;
 `
 
 const StHeaderTitle = styled.div`

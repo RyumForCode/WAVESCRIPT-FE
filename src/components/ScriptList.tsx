@@ -1,17 +1,17 @@
 import styled from "styled-components";
+import useIsLogin from "../hooks/useIsLogin";
 import ScriptHistory from "./ScriptHistory";
 import ScriptPost from "./ScriptPost";
 
-const ScriptList = ({ scriptData } : { scriptData : {UserId : string, content : string, createdAt : string, genre : string, scriptId : number, title : string, updatedAt : string } }) => {
+const ScriptList = ({ scriptData } : any) => {
 
-    const isUser = true;
-
-    console.log(scriptData)
+    const [isLogin] = useIsLogin();
 
     return (
         <StScriptList>
-            <ScriptHistory key = {scriptData.scriptId} id = {scriptData.UserId} content = {scriptData.content}/>
-            {isUser ? <ScriptPost /> : null}
+            <ScriptHistory key = '0' id = {scriptData.script.User.id} content = {scriptData.script.content} />
+            {scriptData.contributor.map((val : any) => <ScriptHistory key = {val.plusScriptId} id = {val.User.id} content = {val.content} />)}
+            {isLogin ? <ScriptPost /> : null}
         </StScriptList>
     );
 };

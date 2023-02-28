@@ -1,24 +1,23 @@
-const Home = () => {
-    
-    return (
-        <div>
-            <header>
-               <h1>WAVESCRIPT</h1>
-               <button>새로고침</button>
-               <button>Register</button>
-               <button>Log in</button>
-            </header>
+import styled from "styled-components";
+import useIsLogin from "../hooks/useIsLogin";
+import MainLogin from "./MainLogin";
+import MainLogout from "./MainLogout";
 
-            <div>
-                <ul>
-                    <li>멜로</li>
-                    <li>액션</li>
-                    <li>판타지</li>
-                    <li>호러</li>
-                </ul>
-            </div>
-        </div>
+const Home = () => {
+
+    const [isLogin] = useIsLogin();
+
+    return (
+        <StMainContainer>
+        </StMainContainer>
     )
 }
 
 export default Home;
+
+const StMainContainer = styled.div`
+    width : 60%;
+    height : 100%;
+    display : flex;
+    flex-direction : column;
+`

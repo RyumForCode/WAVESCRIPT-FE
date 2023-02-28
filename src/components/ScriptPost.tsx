@@ -1,14 +1,31 @@
 import styled from "styled-components";
 import TextareaAutosize from 'react-textarea-autosize';
 import { useState } from "react";
+import { plusscriptAdd } from "../api/script";
+import { useParams } from "react-router-dom";
+import { useMutation, useQueryClient } from "react-query";
 
 const ScriptPost = () => {
+
+    const params = useParams();
+
+    const queryClient = useQueryClient();
+    const mutation = useMutation(plusscriptAdd, {
+        onSuccess : () => {
+            queryClient.invalidateQueries('scriptInspect');
+            setInputVal('');
+        }
+    });
 
     const [inputVal, setInputVal] = useState<string>('');
 
     const onChangeInputVal = (e : React.ChangeEvent<HTMLTextAreaElement>) => {
         setInputVal(e.target.value)
     }
+
+    const onClickContributeButton = () => {
+        mutation.mutate({id : Number(params.id), content : inputVal});
+    };
 
     return (
         <StScriptPostDiv>
@@ -19,7 +36,7 @@ const ScriptPost = () => {
             </StTextareaDiv>
             <StLowerFuncDiv>
                 <StContributorCounter>5 contributor left!</StContributorCounter>
-                <StContributeButton>Contribute!</StContributeButton>
+                <StContributeButton onClick = {() => {onClickContributeButton()}}>Contribute!</StContributeButton>
             </StLowerFuncDiv>
         </StScriptPostDiv>
     );
