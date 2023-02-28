@@ -1,5 +1,5 @@
 import axios from 'axios';
-import instance from './instance';
+import instance from './instance/instance';
 
 const baseURL = process.env.REACT_APP_BE_SERVER;
 

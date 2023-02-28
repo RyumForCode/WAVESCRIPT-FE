@@ -1,4 +1,4 @@
-import instance from "./instance";
+import instance from "./instance/instance";
 
 //checked
 const createNovel = async ({ genre, title, content } : { genre : string, title : string, content : string }) => {
@@ -24,7 +24,6 @@ const scriptBrowseRandom = async () => {
 //checked
 const scriptInspect = async ({id} : {id : number}) => {
     const response = await instance.get(`/scripts/${id}`);
-    console.log(response);
     return response;
 }
 

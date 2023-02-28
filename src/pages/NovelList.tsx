@@ -36,14 +36,22 @@ const StListContainer = styled.div`
 const StNovelListHeader = styled.div`
     display : flex;
     justify-content : space-between;
+    color : white;
     height : 2rem;
     background-color : teal;
     border-radius : 0.25rem;
-    align-items: center;
+    align-items : center;
+`
+
+const StNovelList = styled.div`
+    display : flex;
+    justify-content : space-between;
+    height : 2rem;
+    align-items : center;
 `
 
 const StNLTitle = styled.div`
-    flex-grow : 100;
+    flex-grow : 60;
     text-align: center;
 `
 

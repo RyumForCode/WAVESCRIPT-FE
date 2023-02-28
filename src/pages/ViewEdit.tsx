@@ -4,17 +4,27 @@ import Wrapper from "../components/Wrapper";
 import styled from "styled-components";
 import Footer from "../components/Footer";
 import Container from "../components/Container";
+import { useParams } from "react-router-dom";
+import { useQuery } from "react-query";
+import { scriptInspect } from "../api/script";
 
 const ViewEdit = () => {
+
+    const params = useParams();
+    const { isLoading, isError, data } = useQuery('scriptInspect', () => scriptInspect({id : Number(params.id)}));
+
+    if (isLoading) return <div>Loading</div>
+    if (isError) return <div>Error</div>
+
     return (
         <Wrapper>
             <HeaderTitle />
             <Container>
                 <StScriptPropertyDiv>
-                    <StScriptPropertyTitle>Novel Script Title</StScriptPropertyTitle>
-                    <StScriptPropertyGenre>Genre</StScriptPropertyGenre>
+                    <StScriptPropertyTitle>{data?.data.scripts.title}</StScriptPropertyTitle>
+                    <StScriptPropertyGenre>{data?.data.scripts.genre}</StScriptPropertyGenre>
                 </StScriptPropertyDiv>
-                <ScriptList />
+                <ScriptList scriptData = {data?.data.scripts} />
             </Container>
             <Footer />
         </Wrapper>
