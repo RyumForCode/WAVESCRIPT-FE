@@ -3,7 +3,6 @@ import instance from "./instance/instance";
 //checked
 const createNovel = async ({ title, genre, content, contributors, paragraph } : { title : string, genre : string, content : string, contributors : number, paragraph : number }) => {
     const response = await instance.post(`/scripts`, { title, genre, content, contributors, paragraph });
-    console.log(response);
     return response;
 }
 
@@ -16,7 +15,6 @@ const scriptBrowseAll = async () => {
 //issued
 const scriptBrowseRandom = async () => {
     const response = await instance.get('/scripts');
-    console.log(response);
     return response;
 }
 

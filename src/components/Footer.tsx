@@ -3,9 +3,10 @@ import styled from "styled-components";
 const Footer = () => {
     return (
         <StFooterDiv>
-            <StFooterContent>
-                This is Footer contents!
-            </StFooterContent>
+            <StFooterContentDiv>
+                <StFooterContent>HangHae99 12 Class C Miniproject Group 1</StFooterContent>
+                <StFooterContent>Creator : 곽승민, 이인영, 신동윤, 이승운, 황지상</StFooterContent>
+            </StFooterContentDiv>
         </StFooterDiv>
     );
 };
@@ -20,9 +21,16 @@ const StFooterDiv = styled.div`
     flex-shrink : 0;
 `
 
+const StFooterContentDiv = styled.div`
+    margin : 1.5rem;
+    display : flex;
+    flex-direction : column;
+    gap : 0.5rem;
+`
+
 const StFooterContent = styled.div`
     font-family : 'inter';
     font-weight : 400;
-    font-size : 1rem;
+    font-size : 0.8rem;
     color : white;
 `

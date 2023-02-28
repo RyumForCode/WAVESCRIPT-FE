@@ -3,6 +3,8 @@ import TextareaAutosize from 'react-textarea-autosize';
 import { useState } from "react";
 import { createNovel } from "../api/script";
 import useInput from "../hooks/useInput";
+import useIsLogin from "../hooks/useIsLogin";
+import { useNavigate } from "react-router-dom";
 
 const CreateNewScript = () => {
 
@@ -11,6 +13,10 @@ const CreateNewScript = () => {
     const [contributors, setContributors, removeContributors] = useInput();
     const [paragraph, setParagraph, removeParagraph] = useInput();
 
+    const [isLogin] = useIsLogin();
+
+    const navigate = useNavigate();
+
     const [inputVal, setInputVal] = useState<string>('');
 
     const onChangeInputVal = (e : React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -18,7 +24,8 @@ const CreateNewScript = () => {
     }
 
     const onClickPublishButton = () => {
-        createNovel({title, genre, content : inputVal, contributors : Number(contributors), paragraph : Number(paragraph)});
+        createNovel({title, genre, content : inputVal, contributors : Number(contributors), paragraph : Number(paragraph)})
+        .then((res) => {console.log(res); navigate(`/view-edit/${'1'}`)})
     }
 
     return (

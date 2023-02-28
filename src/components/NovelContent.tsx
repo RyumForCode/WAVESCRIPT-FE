@@ -10,8 +10,8 @@ const NovelContent = ({data} : {data : {UserId : number, content : string, creat
             <StNLTitle>{data.title}</StNLTitle>
             <StNLGenre>{data.genre}</StNLGenre>
             <StNLCreator>{data.UserId}</StNLCreator>
-            <StNLContributor>{`contributor is not ready`}</StNLContributor>
-            <StNLStatus>{`status not ready`}</StNLStatus>
+            <StNLContributor>{`NR`}</StNLContributor>
+            <StNLStatus>{`NR`}</StNLStatus>
         </StNovelContent>
     );
 };
@@ -27,31 +27,31 @@ const StNovelContent = styled.div`
 `
 
 const StNLTitle = styled.div`
-    flex-grow : 60;
-    text-align: center;
+    width : 50%;
+    text-align : left;
     flex-shrink : 0;
 `
 
 const StNLGenre = styled.div`
-    flex-grow : 10;
-    text-align: center;
+    width : 15%;
+    text-align : left;
     flex-shrink : 0;
 `
 
 const StNLCreator = styled.div`
-    flex-grow : 10;
-    text-align: center;
+    width : 15%;
+    text-align : left;
     flex-shrink : 0;
 `
 
 const StNLContributor = styled.div`
-    flex-grow : 10;
-    text-align: center;
+    width : 10%;
+    text-align : left;
     flex-shrink : 0;
 `
 
 const StNLStatus = styled.div`
-    flex-grow : 10;
-    text-align: center;
+    width : 10%;
+    text-align : left;
     flex-shrink : 0;
 `

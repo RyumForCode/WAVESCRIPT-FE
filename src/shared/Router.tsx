@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CreateNovel from "../pages/CreateNovel";
 import Home from "../pages/Home";
 import LogIn from "../pages/LogIn";
+import MyPage from "../pages/MyPage";
 import NovelList from "../pages/NovelList";
 import Register from "../pages/Register";
 import ViewEdit from "../pages/ViewEdit";
@@ -16,6 +17,7 @@ const Router = () => {
                 <Route path = '/view-edit/:id' element = {<ViewEdit />}/>
                 <Route path = '/create-novel' element = {<CreateNovel />}/>
                 <Route path = '/novel-list' element = {<NovelList />} />
+                <Route path = '/my-novels' element = {<MyPage />} />
             </Routes>
         </BrowserRouter>
     );

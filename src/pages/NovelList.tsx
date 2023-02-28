@@ -1,14 +1,18 @@
-// Jisang
-
 import styled from "styled-components";
 import Footer from "../components/Footer";
 import HeaderTitle from "../components/HeaderTitle";
 import NovelContentsList from "../components/NovelContentsList";
+import TopNavBar from "../components/TopNavBar";
 import Wrapper from "../components/Wrapper";
+import useIsLogin from "../hooks/useIsLogin";
 
 const NovelList = () => {
+
+    const [isLogin] = useIsLogin();
+
     return (
         <Wrapper>
+            <TopNavBar isLogin = {isLogin}/>
             <HeaderTitle />
             <StListContainer>
                 <StNovelListHeader>
@@ -46,36 +50,36 @@ const StNovelListHeader = styled.div`
 `
 
 const StNLTitle = styled.div`
-    flex-grow : 60;
-    text-align: center;
+    width : 50%;
+    text-align : left;
     font-family : 'inter';
     font-weight : 700;
 `
 
 const StNLGenre = styled.div`
-    flex-grow : 10;
-    text-align: center;
+    width : 15%;
+    text-align : left;
     font-family : 'inter';
     font-weight : 700;
 `
 
 const StNLCreator = styled.div`
-    flex-grow : 10;
-    text-align: center;
+    width : 15%;
+    text-align : left;
     font-family : 'inter';
     font-weight : 700;
 `
 
 const StNLContributor = styled.div`
-    flex-grow : 10;
-    text-align: center;
+    width : 10%;
+    text-align : left;
     font-family : 'inter';
     font-weight : 700;
 `
 
 const StNLStatus = styled.div`
-    flex-grow : 10;
-    text-align: center;
+    width : 10%;
+    text-align : left;
     font-family : 'inter';
     font-weight : 700;
 `

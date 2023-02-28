@@ -10,8 +10,6 @@ const NovelContentsList = () => {
     if (isLoading) return <div>Loading</div>
     if (isError) return <div>Error</div>
 
-    console.log(data);
-
     return (
         <StContentsListDiv>
             {data?.data.scripts.map((val : {UserId : number, content : string, createdAt : string, genre : string, scriptId : number, title : string, updatedAt : string}) => <NovelContent key = {val.scriptId} data = {val} />)}

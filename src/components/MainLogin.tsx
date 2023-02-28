@@ -21,11 +21,15 @@ const MainLogin = () => {
         navigate('/novel-list');
     }
 
+    const onClickMyPage = () => {
+        navigate('/my-novels');
+    }
+
     return (
         <StButtonDiv>
             <StButton onClick = {() => {onClickCreate()}}>Create new novel</StButton>
             <StButton onClick = {() => {onClickViewAll()}}>View all novels</StButton>
-            <StButton>Show my novels</StButton>
+            <StButton onClick = {() => {onClickMyPage()}}>Show my novels</StButton>
             <StButton onClick = {() => {onClickLogout()}}>Log out</StButton>
         </StButtonDiv>
     )
@@ -35,9 +39,9 @@ export default MainLogin;
 
 const StButtonDiv = styled.div`
     display : flex;
-    flex-shrink : 0;
     justify-content: flex-end;
     width : 100%;
+    margin-right : 1rem;
 `
 
 const StButton = styled.button`
@@ -51,4 +55,8 @@ const StButton = styled.button`
     font-size : 1rem;
     padding : 0 1rem;
     margin-right : 1rem;
+    transition : 200ms;
+    &:hover {
+        background-color : #636363;
+    }
 `

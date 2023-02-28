@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import HeaderTitle from '../components/HeaderTitle';
 import LoginBox from '../components/LoginBox';
+import TopNavBar from '../components/TopNavBar';
 import Wrapper from '../components/Wrapper';
 import useIsLogin from '../hooks/useIsLogin';
 
@@ -19,6 +20,7 @@ const LogIn = () => {
 
     return (
         <Wrapper>
+            <TopNavBar isLogin = {isLogin}/>
             <HeaderTitle />
             <LoginBox />
             <Footer />

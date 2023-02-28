@@ -7,8 +7,12 @@ import Container from "../components/Container";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { scriptInspect } from "../api/script";
+import TopNavBar from "../components/TopNavBar";
+import useIsLogin from "../hooks/useIsLogin";
 
 const ViewEdit = () => {
+
+    const [isLogin] = useIsLogin();
 
     const params = useParams();
     const { isLoading, isError, data } = useQuery('scriptInspect', () => scriptInspect({id : Number(params.id)}));
@@ -16,8 +20,11 @@ const ViewEdit = () => {
     if (isLoading) return <div>Loading</div>
     if (isError) return <div>Error</div>
 
+    console.log(data)
+
     return (
         <Wrapper>
+            <TopNavBar isLogin = {isLogin}/>
             <HeaderTitle />
             <Container>
                 <StScriptPropertyDiv>
