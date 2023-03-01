@@ -3,17 +3,13 @@ import TextareaAutosize from 'react-textarea-autosize';
 import { useState } from "react";
 import { createNovel } from "../api/script";
 import useInput from "../hooks/useInput";
-import useIsLogin from "../hooks/useIsLogin";
 import { useNavigate } from "react-router-dom";
 
 const CreateNewScript = () => {
 
     const [title, setTitle, removeTitle] = useInput();
     const [genre, setGenre, removeGenre] = useInput();
-    const [contributors, setContributors, removeContributors] = useInput();
-    const [paragraph, setParagraph, removeParagraph] = useInput();
-
-    const [isLogin] = useIsLogin();
+    const [contributors, setContributors] = useState<string>('');
 
     const navigate = useNavigate();
 
@@ -23,9 +19,21 @@ const CreateNewScript = () => {
         setInputVal(e.target.value)
     }
 
+    const onChangeContInput = (e : React.ChangeEvent<HTMLInputElement>) => {
+        const contributorsLimit = e.target.value.replace(/[^0-9]/g, '');
+        if (Number(contributorsLimit) <= 20 && contributorsLimit.length <= 2) {
+            setContributors(contributorsLimit);
+        } else if (Number(contributorsLimit) > 20) {
+            setContributors('20');
+        }
+    }
+
     const onClickPublishButton = () => {
-        createNovel({title, genre, content : inputVal, contributors : Number(contributors), paragraph : Number(paragraph)})
-        .then((res) => {console.log(res); navigate(`/view-edit/${'1'}`)})
+        if (Number(contributors) < 3) {
+            setContributors('3');
+        }
+        createNovel({title, genre, content : inputVal, contributors : Number(contributors)})
+        .then((res) => {console.log(res); navigate(`/novel-list`)})
     }
 
     return (
@@ -37,11 +45,7 @@ const CreateNewScript = () => {
                 </StTGContainer>
                 <StLimitInputDiv>
                     <StInputLabel>Contributors</StInputLabel>
-                    <StInput value = {contributors} onChange = {setContributors} placeholder = "Please input Contributors limit"/>
-                </StLimitInputDiv>
-                <StLimitInputDiv>
-                    <StInputLabel>Paragraph</StInputLabel>
-                    <StInput value = {paragraph} onChange = {setParagraph} placeholder = "Please input Paragraph limit"/>
+                    <StInput value = {contributors} onChange = {(e) => {onChangeContInput(e)}} placeholder = "Please input Contributors limit include you(max - 20, min - 3)"/>
                 </StLimitInputDiv>
             </StPropertyContainer>
             <StTextareaDiv>
@@ -113,7 +117,7 @@ const StInput = styled.input`
     font-family : 'inter';
     font-size : 1rem;
     font-weight : 400;
-    width : 50%;
+    width : 80%;
     &:focus {
         outline : none;
     }

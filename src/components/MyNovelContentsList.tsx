@@ -3,17 +3,24 @@ import { useQuery } from "react-query";
 import styled from "styled-components";
 import { scriptBrowseMine } from "../api/script";
 import NovelContent from "./NovelContent";
+import jwt_decode from "jwt-decode";
+import { Cookies } from "react-cookie";
 
 const NovelContentsList = () => {
 
-    const { isLoading, isError, data } = useQuery('browseMyNovels', () => scriptBrowseMine())
+    const cookies = new Cookies();
+    const cookieData : {exp : number, iat : number, userId : string} = jwt_decode(cookies.get('authorization').split(' ')[1]);
+
+    const { isLoading, isError, data } = useQuery('browseMyNovels', () => scriptBrowseMine({myId : cookieData.userId}))
 
     if (isLoading) return <StLoadingDiv><StMotionLoading initial={{ scale : 0 }} animate={{ scale : 1 }} transition={{ duration : 0.5, repeat: Infinity }} /></StLoadingDiv>
     if (isError) return <StErrorDiv>An Error Has Been Occurred!</StErrorDiv>
 
+    console.log(data)
+
     return (
         <StContentsListDiv>
-            {data?.data.scripts.map((val : {UserId : number, id : string, content : string, createdAt : string, genre : string, scriptId : number, title : string, updatedAt : string}) => <NovelContent key = {val.scriptId} data = {val} />)}
+            {data?.data.myscript[0].Scripts.map((val : {UserId : number, contributors : string, content : string, createdAt : string, genre : string, scriptId : number, title : string, updatedAt : string}) => <NovelContent key = {val.scriptId} data = {val} />)}
         </StContentsListDiv>
     );
 };

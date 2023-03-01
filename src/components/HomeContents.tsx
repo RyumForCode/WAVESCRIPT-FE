@@ -13,7 +13,7 @@ const Home = () => {
 
     return (
         <StMainContainer>
-            {data?.data.randomScripts.map((val : {title : string, genre : string, content : string}, idx : number) => <HomeShapeContents key = {idx} idx = {idx} shape = {idx} info = {val}/>)}
+            {data?.data.randomScripts.map((val : {title : string, genre : string, content : string, scriptId : number, User : {id : string}}, idx : number) => <HomeShapeContents key = {idx} idx = {idx} shape = {idx} info = {val}/>)}
         </StMainContainer>
     )
 }

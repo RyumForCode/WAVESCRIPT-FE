@@ -8,4 +8,12 @@ const instance = axios.create({
     headers : {Authorization : cookies.get('authorization')}
 });
 
+instance.interceptors.request.use((config) => {
+    const token = cookies.get('authorization');
+    config.headers.Authorization = token;
+    return config;
+}, (error) => {
+    return Promise.reject(error);
+})
+
 export default instance;

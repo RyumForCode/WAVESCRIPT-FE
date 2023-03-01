@@ -1,8 +1,8 @@
 import instance from "./instance/instance";
 
 //checked
-const createNovel = async ({ title, genre, content, contributors, paragraph } : { title : string, genre : string, content : string, contributors : number, paragraph : number }) => {
-    const response = await instance.post(`/scripts`, { title, genre, content, contributors, paragraph });
+const createNovel = async ({ title, genre, content, contributors } : { title : string, genre : string, content : string, contributors : number }) => {
+    const response = await instance.post(`/scripts`, { title, genre, content, contributors });
     return response;
 }
 
@@ -43,9 +43,9 @@ const plusscriptAdd = async ({id, content} : {id : number, content : string}) =>
 }
 
 
-const scriptBrowseMine = async () => {
-    const response = await instance.get(``);
-    return response
+const scriptBrowseMine = async ({myId} : {myId : string}) => {
+    const response = await instance.get(`/scripts/0/plusscript?myId=${myId}`);
+    return response;
 }
 
 export { createNovel, scriptBrowseAll, scriptBrowseRandom, scriptInspect, scriptEditFirst, scriptDeleteFirst, plusscriptAdd, scriptBrowseMine };

@@ -12,7 +12,8 @@ const RegisterBox = () => {
     const navigate = useNavigate();
 
     const onClickRegisterButton = () => {
-        if(!idValue || !pwValue || !pwConfirmValue) return
+        if(!idValue || !pwValue || !pwConfirmValue) return alert('Please insert all value!')
+        if(idValue)
 
         // password = passwordconfirm check
         if(pwValue === pwConfirmValue){

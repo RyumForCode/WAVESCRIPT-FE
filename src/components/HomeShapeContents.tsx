@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const colorOption = ['255, 179, 0', '0, 145, 255', '255, 0, 93', '77, 255, 0', '119, 0, 255'].sort(() => Math.random() - 0.5);
@@ -12,12 +13,13 @@ const viewBoxShapeOption = [
 ].sort(() => Math.random() - 0.5);
 const randomMargin = ['4rem', '6rem', '8rem', '10rem', '12rem'].sort(() => Math.random() - 0.5);
 
-const HomeShapeContents = ({idx, shape, info} : { idx : number, shape : number, info : {title : string, genre : string, content : string}}) => {
+const HomeShapeContents = ({idx, shape, info} : { idx : number, shape : number, info : {title : string, genre : string, content : string, scriptId : number, User : {id : string}}}) => {
 
     const [isMouseOn, setIsMouseOn] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     return (
-        <StShapeDiv idx = {idx}>
+        <StShapeDiv idx = {idx} onClick = {() => {navigate(`/view-edit/${info.scriptId}`)}}>
         <StMotionSvg
             whileHover={{ scale: 1.2, rotate: 30 }}
             whileTap={{
@@ -54,7 +56,7 @@ const HomeShapeContents = ({idx, shape, info} : { idx : number, shape : number, 
         {isMouseOn ? <StTooltip>
             <StTooltipTitle>{info.title}</StTooltipTitle>
             <StTooltipGenre>{info.genre}</StTooltipGenre>
-            <StTooltipContent>{info.content}</StTooltipContent>
+            <StTooltipContent>{info.content.slice(0, 20)}...</StTooltipContent>
         </StTooltip> : null}
         </StShapeDiv>
     );
@@ -81,21 +83,24 @@ const StTooltip = styled.div`
     padding : 1rem;
     box-sizing : border-box;
     color : white;
-    width : 150%;
+    width : 200%;
     top : 100%;
-    left : -25%;
+    left : -50%;
     position : absolute;
+    z-index : 1;
 `
 
 const StTooltipTitle = styled.div`
-    font-family : 'inter'
+    font-family : 'inter';
     font-size : 1.5rem;
     font-weight : 700;
     overflow : hidden;
     text-overflow : ellipsis;
+    line-height : 2rem;
 `
 
 const StTooltipGenre = styled.div`
+    margin-top : 0.5rem;
     font-family : 'inter'
     font-size : 1rem;
     font-weight : 700;
@@ -103,6 +108,7 @@ const StTooltipGenre = styled.div`
 `
 
 const StTooltipContent = styled.div`
+    margin-top : 0.5rem;
     font-family : 'inter'
     font-size : 0.8rem;
     font-weight : 400;
