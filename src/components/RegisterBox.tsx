@@ -3,17 +3,24 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { register } from '../api/auth';
 import useInput from '../hooks/useInput';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RegisterBox = () => {
     const [idValue, idValueHandler, removeIdValue] = useInput();
     const [pwValue, pwValueHandler, removePwValue] = useInput();
     const [pwConfirmValue, pwConfirmValueHandler, removePwConfirmValue] = useInput();
+    const noValueNotify = () => toast.error("Please fill all values!", {position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "light"});
+    const pwNotify = () => toast.error("Please check your password!", {position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "light"});
+    const idLengthNotify = () => toast.error("Please check ID rules!", {position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "light"});
+    const pwLengthNotify = () => toast.error("Please check password rules!", {position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "light"});
 
     const navigate = useNavigate();
 
     const onClickRegisterButton = () => {
-        if(!idValue || !pwValue || !pwConfirmValue) return alert('Please insert all value!')
-        if(idValue)
+        if(!idValue || !pwValue || !pwConfirmValue) return noValueNotify();
+        if(idValue.length < 5 || idValue.length > 10) return idLengthNotify();
+        if(pwValue.length < 8) return pwLengthNotify();
 
         // password = passwordconfirm check
         if(pwValue === pwConfirmValue){
@@ -24,7 +31,7 @@ const RegisterBox = () => {
                 return error;
             })
         }else{
-            alert('Password confirm has been wrong')
+            pwNotify();
         }
     }
 
@@ -35,13 +42,14 @@ const RegisterBox = () => {
                 <StRegisterTitle>Register</StRegisterTitle>
                 <StRegisterDesc>Participate us and enjoy novels!</StRegisterDesc>
                 <StLabel>ID</StLabel>
-                <StValueInput type="text" value={idValue} onChange={(e)=>{idValueHandler(e)}} />
+                <StValueInput type="text" value={idValue} onChange={(e)=>{idValueHandler(e)}} placeholder = 'Lowercase & Number only, 5 ~ 10'/>
                 <StLabel>Password</StLabel>
-                <StValueInput type="password" value={pwValue} onChange={(e)=>{pwValueHandler(e)}} />
+                <StValueInput type="password" value={pwValue} onChange={(e)=>{pwValueHandler(e)}} placeholder = 'At least 8 charactor'/>
                 <StLabel>Password Confirm</StLabel>
-                <StValueInput type="password" value={pwConfirmValue} onChange={(e)=>{pwConfirmValueHandler(e)}} /> <br />
+                <StValueInput type="password" value={pwConfirmValue} onChange={(e)=>{pwConfirmValueHandler(e)}} placeholder = 'Type same password'/>
                 <StButton onClick={()=>{onClickRegisterButton()}}>Register</StButton>
             </StContentsDiv>
+            <ToastContainer />
         </StRegisterBox>
     );
 };

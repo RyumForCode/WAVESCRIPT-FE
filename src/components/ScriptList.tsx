@@ -11,24 +11,37 @@ const ScriptList = ({ scriptData } : any) => {
     const [isLogin] = useIsLogin();
     const cookies = new Cookies();
     const isWritten = useRef<boolean>(false);
+    const cookieData = useRef<any>(null);
+    const lastUser = useRef<any>(null);
 
-    const cookieData : {exp : number, iat : number, userId : string} = jwt_decode(cookies.get('authorization').split(' ')[1]);
+    isWritten.current = false;
 
-    if(scriptData.script.User.id === cookieData.userId) {
-        isWritten.current = true;   
+    if (cookies.get('authorization')) {
+        cookieData.current = jwt_decode(cookies.get('authorization').split(' ')[1]);
+    } else {
+        cookieData.current = '';
+    }
+
+    if(scriptData.script.User.id === cookieData.current.userId) {
+        isWritten.current = true;
     }
 
     for(let i = 0; i < scriptData.contributor.length; i++) {
-        if(scriptData.contributor[i].User.id === cookieData.userId) {
+        if(scriptData.contributor[i].User.id === cookieData.current.userId) {
             isWritten.current = true;
         }
+    }
+
+    if (scriptData.contributor.length > 0) {
+        lastUser.current = scriptData.contributor[scriptData.contributor.length - 1].User.id;
+    } else {
+        lastUser.current = scriptData.script.User.id;
     }
 
     return (
         <StScriptList>
             <ScriptHistory key = '0' id = {scriptData.script.User.id} content = {scriptData.script.content} />
-            {scriptData.contributor.map((val : any) => <ScriptHistory key = {val.plusScriptId} id = {val.User.id} content = {val.content} />)}
-            {isLogin && !(((scriptData.contributor.length + 1)/scriptData.script.contributors) >= 1) && !isWritten.current ? <ScriptPost /> : null}
+            {isLogin && !(((scriptData.contributor.length + 1)/scriptData.script.contributors) >= 1) && !isWritten.current ? <ScriptPost/> : null}
         </StScriptList>
     );
 };

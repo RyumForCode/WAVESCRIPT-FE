@@ -4,10 +4,15 @@ import { useState } from "react";
 import { plusscriptAdd } from "../api/script";
 import { useParams } from "react-router-dom";
 import { useMutation, useQueryClient } from "react-query";
+import { Cookies } from "react-cookie";
+import jwt_decode from "jwt-decode";
 
 const ScriptPost = () => {
 
     const params = useParams();
+    const cookies = new Cookies();
+    const currentUserToken : {userId : string, iat : number , exp : number} = jwt_decode(cookies.get('authorization').split(' ')[1])
+    const currentUserId = currentUserToken.userId;
 
     const queryClient = useQueryClient();
     const mutation = useMutation(plusscriptAdd, {
@@ -31,7 +36,7 @@ const ScriptPost = () => {
         <StScriptPostDiv>
             <StSectionLine />
             <StTextareaDiv>
-                <StContributor>Id5</StContributor>
+                <StContributor>{currentUserId}</StContributor>
                 <StTextarea value = {inputVal} onChange = {(e) => {onChangeInputVal(e)}} spellCheck = "false" placeholder = "Once upon a time..."/>
             </StTextareaDiv>
             <StLowerFuncDiv>

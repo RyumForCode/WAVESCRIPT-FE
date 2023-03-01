@@ -4,12 +4,18 @@ import { useState } from "react";
 import { createNovel } from "../api/script";
 import useInput from "../hooks/useInput";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CreateNewScript = () => {
 
     const [title, setTitle, removeTitle] = useInput();
     const [genre, setGenre, removeGenre] = useInput();
+    const [agreeVal, setAgreeVal, removeAgreeVal] = useInput();
     const [contributors, setContributors] = useState<string>('');
+
+    const validationNotify = () => toast.error("Please fill all values!", {position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "light"});
+    const agreeNotify = () => toast.error(`Please type 'Agree' in field!`, {position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "light"});
 
     const navigate = useNavigate();
 
@@ -29,6 +35,9 @@ const CreateNewScript = () => {
     }
 
     const onClickPublishButton = () => {
+        if (title === '' || genre === '' || inputVal === '' || contributors === '') return validationNotify();
+        if (agreeVal !== 'Agree') return agreeNotify();
+        if (!(window.confirm('Are you sure to submit this form?'))) return;
         if (Number(contributors) < 3) {
             setContributors('3');
         }
@@ -45,7 +54,7 @@ const CreateNewScript = () => {
                 </StTGContainer>
                 <StLimitInputDiv>
                     <StInputLabel>Contributors</StInputLabel>
-                    <StInput value = {contributors} onChange = {(e) => {onChangeContInput(e)}} placeholder = "Please input Contributors limit include you(max - 20, min - 3)"/>
+                    <StInput value = {contributors} onChange = {(e) => {onChangeContInput(e)}} placeholder = "Please input Contributors limit include you(min - 3, max - 20)"/>
                 </StLimitInputDiv>
             </StPropertyContainer>
             <StTextareaDiv>
@@ -53,11 +62,13 @@ const CreateNewScript = () => {
                 <StTextarea value = {inputVal} onChange = {(e) => {onChangeInputVal(e)}} spellCheck = "false" placeholder = "Once upon a time..."/>
             </StTextareaDiv>
             <StLowerFuncDiv>
-                <div>
-                    You CANNOT fix or remove your script after someone add the script.<br />If you agree, Please write 'Agree'.
-                </div>
+                <StAgreeDiv>
+                    You CANNOT fix or remove your script after someone add the script.<br />If you agree, Please enter 'Agree'.
+                    <StAgreeInput value = {agreeVal} onChange = {(e) => setAgreeVal(e)} placeholder = {`Type 'Agree' in here!`}/>
+                </StAgreeDiv>
                 <StContributeButton onClick = {() => {onClickPublishButton()}}>Publish!</StContributeButton>
             </StLowerFuncDiv>
+            <ToastContainer />
         </StScriptPostDiv>
     );
 };
@@ -90,6 +101,7 @@ const StLowerFuncDiv = styled.div`
     width : 100%;
     display : flex;
     justify-content : space-between;
+    align-items : center;
     margin-top : 2rem;
     gap : 1rem;
 `
@@ -188,5 +200,29 @@ const StContributeButton = styled.button`
     transition : 200ms;
     &:hover {
         background-color : #606060;
+    }
+`
+
+const StAgreeDiv = styled.div`
+    font-family : 'inter';
+    font-weight : 400;
+    font-size : 0.8rem;
+    line-height : 1.5rem;
+`
+
+const StAgreeInput = styled.input`
+    width : 100%;
+    font-family : 'inter';
+    font-weight : 700;
+    font-size : 0.8rem;
+    color : #ff2146;
+    border : none;
+    padding : 0;
+    margin : 0;
+    &:focus {
+        outline : none;
+    }
+    &::placeholder {
+        color : #ff8599;
     }
 `

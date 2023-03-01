@@ -3,21 +3,27 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { login } from '../api/auth';
 import useInput from '../hooks/useInput';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LogInBox = () => {
 
     const [idValue,idValueHandler,idValueRemover] = useInput()
     const [pwValue,pwValueHandler,pwValueRemover] = useInput()
     const [cookies, setCookie, removeCookie] = useCookies(['authorization']);
+    const noValueNotify = () => toast.error("Please fill all values!", {position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "light"});
+    const wrongNotify = () => toast.error("ID or Password has been wrong!", {position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "light"});
     
     const navigate = useNavigate();
 
     const onClickLoginButton = () => {
-        if(!idValue || !pwValue) return alert('Fill all field')
+        if(!idValue || !pwValue) return noValueNotify();
         login({id:idValue, password:pwValue}).then((res)=>{
             const authId = res.data.Authorization.split(' ')[1];
             setCookie("authorization", 'Bearer ' + authId);
             navigate('/');
+        }).catch((error) => {
+            wrongNotify();
         })
     }
 
@@ -27,11 +33,12 @@ const LogInBox = () => {
                 <StLoginTitle>Login</StLoginTitle>
                 <StLoginDesc>Discover bunch of novels in it!</StLoginDesc>
                 <StLabel>ID </StLabel>
-                <StValueInput type="text" value={idValue} onChange={(e)=>{idValueHandler(e)}} placeholder = 'Insert your id'/>
+                <StValueInput type="text" value={idValue} onChange={(e)=>{idValueHandler(e)}} placeholder = 'Insert your ID'/>
                 <StLabel>Password</StLabel>
-                <StValueInput type="password" value={pwValue} onChange={(e)=>{pwValueHandler(e)}} placeholder = 'Insert your password'/>
+                <StValueInput type="password" value={pwValue} onChange={(e)=>{pwValueHandler(e)}} placeholder = 'Insert your Password'/>
                 <StButton onClick={()=>{onClickLoginButton()}}>Login</StButton>
             </StContentsDiv>
+            <ToastContainer />
         </StLoginBox>
     );
 };
