@@ -29,6 +29,8 @@ const StTopNavBar = styled.div`
     justify-content : space-between;
     align-items : center;
     box-shadow : 0px 0px 1rem rgba(0, 0, 0, .15);
+    position : absolute;
+    top : 0;
 `
 
 const StTopNavBarTitle = styled.div`
@@ -38,4 +40,9 @@ const StTopNavBarTitle = styled.div`
     height : 2rem;
     color : black;
     margin-left : 2rem;
+    cursor : pointer;
+    transition : 200ms;
+    &:active {
+        scale : 1.1;
+    }
 `

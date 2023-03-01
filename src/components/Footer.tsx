@@ -15,10 +15,12 @@ export default Footer;
 
 const StFooterDiv = styled.div`
     background-color : #303030;
-    margin-top : 4rem;
     width : 100%;
     height : 6rem;
     flex-shrink : 0;
+    position : absolute;
+    bottom : 0;
+    transform : translateY(0%);
 `
 
 const StFooterContentDiv = styled.div`

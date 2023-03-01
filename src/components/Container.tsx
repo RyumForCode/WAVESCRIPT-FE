@@ -15,4 +15,15 @@ const StContainer = styled.div`
     flex-direction : column;
     justify-content : space-between;
     width : 60%;
+
+    animation: fadein 400ms;
+
+    @keyframes fadein {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
 `

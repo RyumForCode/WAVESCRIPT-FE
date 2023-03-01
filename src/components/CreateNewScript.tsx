@@ -49,6 +49,9 @@ const CreateNewScript = () => {
                 <StTextarea value = {inputVal} onChange = {(e) => {onChangeInputVal(e)}} spellCheck = "false" placeholder = "Once upon a time..."/>
             </StTextareaDiv>
             <StLowerFuncDiv>
+                <div>
+                    You CANNOT fix or remove your script after someone add the script.<br />If you agree, Please write 'Agree'.
+                </div>
                 <StContributeButton onClick = {() => {onClickPublishButton()}}>Publish!</StContributeButton>
             </StLowerFuncDiv>
         </StScriptPostDiv>
@@ -82,7 +85,7 @@ const StTextareaDiv = styled.div`
 const StLowerFuncDiv = styled.div`
     width : 100%;
     display : flex;
-    justify-content : flex-end;
+    justify-content : space-between;
     margin-top : 2rem;
     gap : 1rem;
 `

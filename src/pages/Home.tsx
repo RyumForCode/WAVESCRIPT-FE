@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <Wrapper>
       <TopNavBar isLogin = {isLogin}/>
-      <HeaderTitle />
+      <HeaderTitle>The Space Of Imagination.</HeaderTitle>
       <HomeContents />
       <Footer />
     </Wrapper>

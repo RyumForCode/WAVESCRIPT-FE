@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import { useQuery } from "react-query";
 import styled from "styled-components";
-import { scriptBrowseAll } from "../api/script";
+import { scriptBrowseMine } from "../api/script";
 import NovelContent from "./NovelContent";
 
 const NovelContentsList = () => {
 
-    const { isLoading, isError, data } = useQuery('browseAll', () => scriptBrowseAll())
+    const { isLoading, isError, data } = useQuery('browseMyNovels', () => scriptBrowseMine())
 
     if (isLoading) return <StLoadingDiv><StMotionLoading initial={{ scale : 0 }} animate={{ scale : 1 }} transition={{ duration : 0.5, repeat: Infinity }} /></StLoadingDiv>
     if (isError) return <StErrorDiv>An Error Has Been Occurred!</StErrorDiv>

@@ -1,13 +1,37 @@
-import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useEffect } from "react";
 import styled from "styled-components";
 
-const HeaderTitle = () => {
+const HeaderTitle = ({children} : {children : any}) => {
 
-    const navigate = useNavigate();
+    const transition = {
+        duration: 0.6,
+        ease: [0.6, -0.05, 0.01, 0.9],
+    };
+      
+    const textReveal = {
+        initial: {
+          y: "0%",
+          opacity : 0,
+          scale : 0.8
+        },
+        animate: {
+          y: "0%",
+          opacity : 1,
+          scale : 1
+        },
+    };
 
     return (
         <StHeaderDiv>
-            <StHeaderTitle onClick = {() => {navigate('/')}}>WAVESCRIPT</StHeaderTitle>
+            <StHeaderTitle
+                variants={textReveal}
+                initial="initial"
+                animate="animate"
+                transition={transition}
+            >
+                {children}
+            </StHeaderTitle>
         </StHeaderDiv>
     );
 };
@@ -21,7 +45,7 @@ const StHeaderDiv = styled.div`
     flex-shrink : 0;
 `
 
-const StHeaderTitle = styled.div`
+const StHeaderTitle = styled(motion.div)`
     font-family : 'inter';
     font-size : 4rem;
     font-weight : 900;

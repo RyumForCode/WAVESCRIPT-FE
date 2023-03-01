@@ -21,7 +21,7 @@ const LogIn = () => {
     return (
         <Wrapper>
             <TopNavBar isLogin = {isLogin}/>
-            <HeaderTitle />
+            <HeaderTitle>WAVESCRIPT</HeaderTitle>
             <LoginBox />
             <Footer />
         </Wrapper>

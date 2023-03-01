@@ -12,10 +12,14 @@ export default Wrapper;
 
 const StWrapper = styled.div`
     width : 100%;
+    box-sizing : border-box;
     min-height : 100vh;
     height : 100%;
     display : flex;
     flex-direction : column;
-    justify-content : space-between;
+    justify-content : flex-start;
     align-items : center;
+    position : relative;
+    padding-top : 4rem;
+    padding-bottom : 10rem;
 `

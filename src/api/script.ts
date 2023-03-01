@@ -42,4 +42,10 @@ const plusscriptAdd = async ({id, content} : {id : number, content : string}) =>
     return response;
 }
 
-export { createNovel, scriptBrowseAll, scriptBrowseRandom, scriptInspect, scriptEditFirst, scriptDeleteFirst, plusscriptAdd };
+
+const scriptBrowseMine = async () => {
+    const response = await instance.get(``);
+    return response
+}
+
+export { createNovel, scriptBrowseAll, scriptBrowseRandom, scriptInspect, scriptEditFirst, scriptDeleteFirst, plusscriptAdd, scriptBrowseMine };

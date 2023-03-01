@@ -56,6 +56,17 @@ const StRegisterBox = styled.div`
     box-shadow : 0px 0px 1rem rgba(0, 0, 0, .15);
     display : flex;
     flex-direction : column;
+
+    animation: fadein 400ms;
+
+    @keyframes fadein {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
 `
 
 const StContentsDiv = styled.div`
@@ -115,6 +126,7 @@ const StButton = styled.button`
     font-family : 'inter';
     font-weight : 900;
     transition : 200ms;
+    cursor : pointer;
     &:hover {
         background-color : #636363;
     }

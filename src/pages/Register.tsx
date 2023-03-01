@@ -21,7 +21,7 @@ const Register = () => {
     return (
         <Wrapper>
             <TopNavBar isLogin = {isLogin}/>
-            <HeaderTitle />
+            <HeaderTitle>WAVESCRIPT</HeaderTitle>
             <RegisterBox />
             <Footer />
         </Wrapper>

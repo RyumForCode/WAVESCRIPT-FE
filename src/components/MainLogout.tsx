@@ -47,7 +47,11 @@ const StButton = styled.button`
     padding : 0 1rem;
     margin-right : 1rem;
     transition : 200ms;
+    cursor : pointer;
     &:hover {
         background-color : #636363;
+    }
+    &:active {
+        scale : 1.1;
     }
 `

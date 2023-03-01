@@ -22,7 +22,7 @@ const CreateNovel = () => {
     return (
         <Wrapper>
             <TopNavBar isLogin = {isLogin}/>
-            <HeaderTitle />
+            <HeaderTitle>Create New Novel</HeaderTitle>
             <StCreateContainer>
                 <CreateNewScript />
             </StCreateContainer>
@@ -39,4 +39,15 @@ const StCreateContainer = styled.div`
     justify-content : flex-start;
     margin : auto;
     width : 60%;
+
+    animation: fadein 400ms;
+
+    @keyframes fadein {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
 `

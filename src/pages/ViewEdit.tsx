@@ -20,12 +20,10 @@ const ViewEdit = () => {
     if (isLoading) return <div>Loading</div>
     if (isError) return <div>Error</div>
 
-    console.log(data)
-
     return (
         <Wrapper>
             <TopNavBar isLogin = {isLogin}/>
-            <HeaderTitle />
+            <HeaderTitle>Let's make new legend</HeaderTitle>
             <Container>
                 <StScriptPropertyDiv>
                     <StScriptPropertyTitle>{data?.data.script.script.title}</StScriptPropertyTitle>
