@@ -16,9 +16,12 @@ const NovelContentsList = () => {
     if (isLoading) return <StLoadingDiv><StMotionLoading initial={{ scale : 0 }} animate={{ scale : 1 }} transition={{ duration : 0.5, repeat: Infinity }} /></StLoadingDiv>
     if (isError) return <StErrorDiv>An Error Has Been Occurred!</StErrorDiv>
 
+    console.log(data)
+
     return (
         <StContentsListDiv>
-            {data?.data.page.myScript.map((val : {UserId : number, plusCount : number, contributors : string, id : string, content? : string, createdAt : string, genre : string, scriptId : number, title : string, updatedAt : string}) => <MyNovelContent key = {val.scriptId} data = {val} />)}
+            {data?.data.page.myScript.map((val : {UserId : number, plusCount : number, contributors : string, id : string, content? : string, createdAt : string, genre : string, scriptId : number, title : string, updatedAt : string}) => <MyNovelContent key = {val.scriptId} data = {val} userId = {data?.data.page.id} />)}
+            {data?.data.page.myPlusScript.map((val : {UserId : number, plusCount : number, contributors : string, id : string, content? : string, createdAt : string, genre : string, scriptId : number, title : string, updatedAt : string}) => <MyNovelContent key = {val.scriptId} data = {val} userId = {data?.data.page.id} />)}
         </StContentsListDiv>
     );
 };

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const MyNovelContent = ({data} : {data : {UserId : number, plusCount : number, contributors : string, id : string, createdAt : string, genre : string, scriptId : number, title : string, updatedAt : string}}) => {
+const MyNovelContent = ({data, userId} : {data : {UserId : number, plusCount : number, contributors : string, id : string, createdAt : string, genre : string, scriptId : number, title : string, updatedAt : string}, userId : string}) => {
 
     const navigate = useNavigate();
     if (data === null) return <StNovelContent>There's no Novel on you.</StNovelContent>
@@ -9,7 +9,7 @@ const MyNovelContent = ({data} : {data : {UserId : number, plusCount : number, c
         <StNovelContent onClick = {() => {navigate(`/view-edit/${data.scriptId}`)}}>
             <StNLTitle>{data.title}</StNLTitle>
             <StNLGenre>{data.genre}</StNLGenre>
-            <StNLCreator>N/A</StNLCreator>
+            <StNLCreator>{userId}</StNLCreator>
             <StNLContributor>{data.plusCount + 1}/{data.contributors}</StNLContributor>
             <StNLStatus>{((data.plusCount + 1) / Number(data.contributors)) >= 1 ? 'Done' : 'Yet'}</StNLStatus>
         </StNovelContent>
