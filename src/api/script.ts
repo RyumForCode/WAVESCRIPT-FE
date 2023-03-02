@@ -42,20 +42,10 @@ const plusscriptAdd = async ({id, content} : {id : number, content : string}) =>
     return response;
 }
 
-const scriptEditPlus = async ({scriptId, plusScriptId, content} : {scriptId : string, plusScriptId : string, content : any}) => {
-    const response = await instance.patch(`/scripts/${scriptId}/plusscript/${plusScriptId}`, {content});
-    return response;
-}
-
-const scriptRemovePlus = async ({scriptId, plusScriptId} : {scriptId : string, plusScriptId : string}) => {
-    const response = await instance.delete(`/scripts/${scriptId}/plusscript/${plusScriptId}`);
-    return response;
-}
-
 //checked
 const scriptBrowseMine = async () => {
     const response = await instance.get(`/myPage`);
     return response;
 }
 
-export { createNovel, scriptBrowseAll, scriptBrowseRandom, scriptInspect, scriptEditFirst, scriptDeleteFirst, plusscriptAdd, scriptBrowseMine, scriptEditPlus, scriptRemovePlus };
+export { createNovel, scriptBrowseAll, scriptBrowseRandom, scriptInspect, scriptEditFirst, scriptDeleteFirst, plusscriptAdd, scriptBrowseMine };

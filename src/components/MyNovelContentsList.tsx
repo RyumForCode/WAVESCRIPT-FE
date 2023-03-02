@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useQuery } from "react-query";
 import styled from "styled-components";
 import { scriptBrowseMine } from "../api/script";
-import NovelContent from "./NovelContent";
+import MyNovelContent from "./MyNovelContent";
 import jwt_decode from "jwt-decode";
 import { Cookies } from "react-cookie";
 
@@ -16,11 +16,9 @@ const NovelContentsList = () => {
     if (isLoading) return <StLoadingDiv><StMotionLoading initial={{ scale : 0 }} animate={{ scale : 1 }} transition={{ duration : 0.5, repeat: Infinity }} /></StLoadingDiv>
     if (isError) return <StErrorDiv>An Error Has Been Occurred!</StErrorDiv>
 
-    console.log(data);
-
     return (
         <StContentsListDiv>
-            {data?.data.scripts.map((val : {UserId : number, plusCount : number, contributors : string, id : string, content : string, createdAt : string, genre : string, scriptId : number, title : string, updatedAt : string}) => <NovelContent key = {val.scriptId} data = {val} />)}
+            {data?.data.page.myScript.map((val : {UserId : number, plusCount : number, contributors : string, id : string, content? : string, createdAt : string, genre : string, scriptId : number, title : string, updatedAt : string}) => <MyNovelContent key = {val.scriptId} data = {val} />)}
         </StContentsListDiv>
     );
 };

@@ -41,7 +41,8 @@ const ScriptList = ({ scriptData } : any) => {
     return (
         <StScriptList>
             <ScriptHistory key = '0' id = {scriptData.script.User.id} content = {scriptData.script.content} />
-            {isLogin && !(((scriptData.contributor.length + 1)/scriptData.script.contributors) >= 1) && !isWritten.current ? <ScriptPost/> : null}
+            {scriptData.contributor.map((val : any) => <ScriptHistory key = {val.plusScriptId} id = {val.User.id} content = {val.content} />)}
+            {isLogin && !(((scriptData.contributor.length + 1)/scriptData.script.contributors) >= 1) && !isWritten.current ? <ScriptPost /> : null}
         </StScriptList>
     );
 };

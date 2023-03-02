@@ -40,7 +40,7 @@ const ScriptPost = () => {
                 <StTextarea value = {inputVal} onChange = {(e) => {onChangeInputVal(e)}} spellCheck = "false" placeholder = "Once upon a time..."/>
             </StTextareaDiv>
             <StLowerFuncDiv>
-                <StContributorCounter>5 contributor left!</StContributorCounter>
+                <StContributorCounter>{''}</StContributorCounter>
                 <StContributeButton onClick = {() => {onClickContributeButton()}}>Contribute!</StContributeButton>
             </StLowerFuncDiv>
         </StScriptPostDiv>
